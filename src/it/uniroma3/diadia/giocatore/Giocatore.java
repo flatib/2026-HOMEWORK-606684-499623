@@ -23,8 +23,4 @@ public class Giocatore {
 	public void setCfu(int cfu) {
 		this.cfu = cfu;
 	}
-	
-	public String toString() {
-		return cfu + " CFU";
-	}
 }
