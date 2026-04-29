@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class LabirintoTest {
 	
@@ -31,6 +32,7 @@ class LabirintoTest {
 		
 		@Test
 		void testGetStanzaVincente3() {
+			labirinto.getStanzaCorrente().addAttrezzo(new Attrezzo("chiave", 1));
 			assertSame(labirinto.getStanzaCorrente().getStanzaAdiacente("nord"), labirinto.getStanzaVincente());
 		}
 		
@@ -50,6 +52,7 @@ class LabirintoTest {
 		
 		@Test
 		void testSetStanzaCorrente3() {
+			labirinto.getStanzaCorrente().addAttrezzo(new Attrezzo("chiave", 1));
 			labirinto.setStanzaCorrente(labirinto.getStanzaCorrente().getStanzaAdiacente("nord"));
 			assertEquals("Biblioteca", labirinto.getStanzaCorrente().getNome());
 		}
@@ -63,12 +66,14 @@ class LabirintoTest {
 		
 		@Test
 		void testGetStanzaCorrente2() {
+			labirinto.getStanzaCorrente().addAttrezzo(new Attrezzo("chiave", 1));
 			labirinto.setStanzaCorrente(labirinto.getStanzaCorrente().getStanzaAdiacente("nord"));
 			assertEquals("Biblioteca", labirinto.getStanzaCorrente().getNome());
 		}
 		
 		@Test
 		void testGetStanzaCorrente3() {
+			labirinto.getStanzaCorrente().addAttrezzo(new Attrezzo("chiave", 1));
 			assertSame(labirinto.getStanzaCorrente(), labirinto.getStanzaCorrente().
 					getStanzaAdiacente("nord").getStanzaAdiacente("sud"));
 			assertSame(labirinto.getStanzaCorrente(), labirinto.getStanzaCorrente().

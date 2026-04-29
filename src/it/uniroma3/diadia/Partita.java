@@ -24,12 +24,8 @@ public class Partita {
 		giocatore = new Giocatore();
 	}
 	
-	public Stanza getStanzaVincente() {
-		return labirinto.getStanzaVincente();
-	}
-
-	public Stanza getStanzaCorrente() {
-		return labirinto.getStanzaCorrente();
+	public Labirinto getLabirinto() {
+		return labirinto;
 	}
 	
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
@@ -59,14 +55,6 @@ public class Partita {
 	 */
 	public void setFinita() {
 		this.finita = true;
-	}
-
-	public int getCfu() {
-		return giocatore.getCfu();
-	}
-	
-	public void setCfu(int cfu) {
-		giocatore.setCfu(cfu);
 	}
 	
 	public Giocatore getGiocatore() {
