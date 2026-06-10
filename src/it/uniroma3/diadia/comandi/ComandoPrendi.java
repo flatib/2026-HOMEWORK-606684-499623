@@ -4,17 +4,16 @@ import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class ComandoPrendi implements Comando {
+public class ComandoPrendi extends AbstractComando {
 	
 	private String attrezzo;
-	private IO io;
 	
-	public ComandoPrendi(IO io) {
-		this.io = io;
+	public ComandoPrendi() {
+		super();
 	}
 
 	@Override
-	public void esegui(Partita partita) {
+	public void esegui(Partita partita, IO io) {
 		
 		if (attrezzo == null)
 			io.mostraMessaggio("Cosa vuoi prendere?");

@@ -9,11 +9,11 @@ import it.uniroma3.diadia.giocatore.Giocatore;
 
 class GiocatoreTest {
 
-	private Giocatore giocatore = new Giocatore();
+	private Giocatore giocatore;
 	
 	@BeforeEach
 	void setUp() {
-		giocatore = new Giocatore();
+		giocatore = new Giocatore(20, 10);
 	}
 	
 	@Test

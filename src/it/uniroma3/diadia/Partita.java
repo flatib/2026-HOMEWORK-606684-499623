@@ -1,63 +1,87 @@
 package it.uniroma3.diadia;
 
-import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.giocatore.Giocatore;
+import java.io.InputStream;
 
-/**
- * Questa classe modella una partita del gioco
- *
- * @author docente di POO
- * @see Stanza
- * @version base
- */
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.giocatore.Giocatore;
 
 public class Partita {
 
-	private boolean finita;
-	private Labirinto labirinto;
-	private Giocatore giocatore;
+    private int numeroLivelli;
+    private boolean finita;
+    private Labirinto labirinto;
+    private Giocatore giocatore;
+    private int currentLevel;
 
-	public Partita() {
-		this.finita = false;
-		labirinto = new Labirinto();
-		giocatore = new Giocatore();
-	}
-	
-	public Labirinto getLabirinto() {
-		return labirinto;
-	}
-	
-	public void setStanzaCorrente(Stanza stanzaCorrente) {
-		labirinto.setStanzaCorrente(stanzaCorrente);
-	}
-	/**
-	 * Restituisce vero se e solo se la partita e' stata vinta
-	 * 
-	 * @return vero se partita vinta
-	 */
-	public boolean vinta() {
-		return labirinto.getStanzaCorrente() == labirinto.getStanzaVincente();
-	}
+    public Partita(Labirinto labirinto) {
+        this(labirinto, 5, 20, 10);
+    }
 
-	/**
-	 * Restituisce vero se e solo se la partita e' finita
-	 * 
-	 * @return vero se partita finita
-	 */
-	public boolean isFinita() {
-		return finita || vinta() || (giocatore.getCfu() == 0);
-	}
+    public Partita(Labirinto labirinto, int numeroLivelli, int cfuIniziali, int pesoMaxBorsa) {
+        this.finita = false;
+        this.labirinto = labirinto;
+        this.giocatore = new Giocatore(cfuIniziali, pesoMaxBorsa);
+        this.currentLevel = 1;
+        this.numeroLivelli = numeroLivelli;
+    }
 
-	/**
-	 * Imposta la partita come finita
-	 *
-	 */
-	public void setFinita() {
-		this.finita = true;
-	}
-	
-	public Giocatore getGiocatore() {
-		return this.giocatore;
-	}
+    public Labirinto getLabirinto() {
+        return labirinto;
+    }
+
+    public void setLabirinto(Labirinto labirinto) {
+        this.labirinto = labirinto;
+    }
+
+    public boolean vinta() {
+        return isUltimoLivello() &&
+               labirinto.getStanzaCorrente() == labirinto.getStanzaVincente();
+    }
+
+    public boolean levelCompletato() {
+        return labirinto.getStanzaCorrente() == labirinto.getStanzaVincente();
+    }
+
+    public boolean isUltimoLivello() {
+        return this.currentLevel == this.numeroLivelli;
+    }
+
+    public boolean isFinita() {
+        return finita || vinta() || (giocatore.getCfu() == 0);
+    }
+
+    public void setFinita() {
+        this.finita = true;
+    }
+
+    public int getCurrentLevel() {
+        return this.currentLevel;
+    }
+
+    public void setCurrentLevel(int level) {
+        this.currentLevel = level;
+    }
+
+    public int getNumeroLivelli() {
+        return this.numeroLivelli;
+    }
+
+    public void setNumeroLivelli(int numeroLivelli) {
+        this.numeroLivelli = numeroLivelli;
+    }
+
+    public void nextLevel() throws Exception {
+        if (currentLevel < numeroLivelli) {
+            currentLevel++;
+            InputStream in = DiaDia.class.getClassLoader().getResourceAsStream("labirinti/labirinto" + currentLevel + ".txt");
+            if (in == null)
+                throw new RuntimeException("Risorsa labirinti/labirinto1.txt non trovata");
+            Labirinto nuovoLabirinto = new Labirinto(in);
+            setLabirinto(nuovoLabirinto);
+        }
+    }
+
+    public Giocatore getGiocatore() {
+        return this.giocatore;
+    }
 }

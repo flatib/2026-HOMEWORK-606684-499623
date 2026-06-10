@@ -92,7 +92,7 @@ class BorsaTest {
 	void testRemoveAttrezzo1() {
 		Attrezzo attrezzo = new Attrezzo("martello", 3);
 		borsa.addAttrezzo(attrezzo);
-		assertSame(attrezzo, borsa.removeAttrezzo("martello"));
+		assertEquals(attrezzo.getNome(), borsa.removeAttrezzo("martello").getNome());
 	}
 	
 	@Test
@@ -106,6 +106,87 @@ class BorsaTest {
 	void testRemoveAttrezzo3() {
 		assertNull(borsa.removeAttrezzo("martello"));
 	}
+	
+	// getContenutoOrdinatoPerPeso method
+	
+	@Test
+	void testGetContenutoOrdinatoPerPeso() {
+		Attrezzo attrezzo1 = new Attrezzo("martello", 3);
+		Attrezzo attrezzo2 = new Attrezzo("cacciavite", 2);
+		borsa.addAttrezzo(attrezzo1);
+		borsa.addAttrezzo(attrezzo2);
+		assertEquals(attrezzo2, borsa.getContenutoOrdinatoPerPeso().get(0));
+		assertEquals(attrezzo1, borsa.getContenutoOrdinatoPerPeso().get(1));
+	}
+	
+	@Test
+	void testGetContenutoOrdinatoPerPesoStessoPeso() {
+		Attrezzo attrezzo1 = new Attrezzo("martello", 3);
+		Attrezzo attrezzo2 = new Attrezzo("cacciavite", 3);
+		borsa.addAttrezzo(attrezzo1);
+		borsa.addAttrezzo(attrezzo2);
+		assertEquals(attrezzo2, borsa.getContenutoOrdinatoPerPeso().get(0));
+		assertEquals(attrezzo1, borsa.getContenutoOrdinatoPerPeso().get(1));
+	}
+	
+	
+	// getContenutoOrdinatoPerNome method
+	
+	@Test
+	void testGetContenutoOrdinatoPerNome() {
+		Attrezzo attrezzo1 = new Attrezzo("martello", 3);
+		Attrezzo attrezzo2 = new Attrezzo("cacciavite", 2);
+		borsa.addAttrezzo(attrezzo1);
+		borsa.addAttrezzo(attrezzo2);
+		assertEquals(attrezzo1, borsa.getContenutoOrdinatoPerNome().last());
+		assertEquals(attrezzo2, borsa.getContenutoOrdinatoPerNome().first());
+	}
+	
+	// getContenutoRaggruppatoPerPeso method
+	
+	@Test
+	void testGetContenutoRaggruppatoPerPeso() {
+		Attrezzo attrezzo1 = new Attrezzo("martello", 3);
+		Attrezzo attrezzo2 = new Attrezzo("cacciavite", 2);
+		Attrezzo attrezzo3 = new Attrezzo("osso", 3);
+		Attrezzo attrezzo4 = new Attrezzo("chiave inglese", 1);
+		Attrezzo attrezzo5 = new Attrezzo("chiave a brugola", 1);
+		borsa.addAttrezzo(attrezzo1);
+		borsa.addAttrezzo(attrezzo2);
+		borsa.addAttrezzo(attrezzo3);
+		borsa.addAttrezzo(attrezzo4);
+		borsa.addAttrezzo(attrezzo5);
+		assertTrue(borsa.getContenutoRaggruppatoPerPeso().get(3).contains(attrezzo1));
+		assertTrue(borsa.getContenutoRaggruppatoPerPeso().get(3).contains(attrezzo3));
+		assertTrue(borsa.getContenutoRaggruppatoPerPeso().get(2).contains(attrezzo2));
+		assertTrue(borsa.getContenutoRaggruppatoPerPeso().get(1).contains(attrezzo4));
+		assertTrue(borsa.getContenutoRaggruppatoPerPeso().get(1).contains(attrezzo5));
+		assertFalse(borsa.getContenutoRaggruppatoPerPeso().get(3).contains(attrezzo2));
+		assertFalse(borsa.getContenutoRaggruppatoPerPeso().get(2).contains(attrezzo1));
+	}
+	
+	// getSortedSetOrdinatoPerPeso method
+	
+	@Test
+	void testGetSortedSetOrdinatoPerPeso() {
+		Attrezzo attrezzo1 = new Attrezzo("martello", 3);
+		Attrezzo attrezzo2 = new Attrezzo("cacciavite", 2);
+		borsa.addAttrezzo(attrezzo1);
+		borsa.addAttrezzo(attrezzo2);
+		assertEquals(attrezzo2, borsa.getSortedSetOrdinatoPerPeso().first());
+		assertEquals(attrezzo1, borsa.getSortedSetOrdinatoPerPeso().last());
+	}
+	
+	@Test
+	void testGetSortedSetOrdinatoPerPesoStessoPeso() {
+		Attrezzo attrezzo1 = new Attrezzo("martello", 3);
+		Attrezzo attrezzo2 = new Attrezzo("cacciavite", 3);
+		borsa.addAttrezzo(attrezzo1);
+		borsa.addAttrezzo(attrezzo2);
+		assertEquals(attrezzo2, borsa.getSortedSetOrdinatoPerPeso().first());
+		assertEquals(attrezzo1, borsa.getSortedSetOrdinatoPerPeso().last());
+	}
+	
 	
 	// toString method
 	

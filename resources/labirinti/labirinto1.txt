@@ -1,0 +1,7 @@
+Stanze: Atrio, Biblioteca, Laboratorio, Archivio
+StanzeBuie: Archivio lanterna
+Inizio: Atrio
+Vincente: Biblioteca
+Attrezzi: lanterna 1 Laboratorio, osso 1 Atrio, libro 2 Biblioteca
+Uscite: Atrio nord Biblioteca, Atrio est Laboratorio, Laboratorio ovest Atrio, Laboratorio nord Archivio, Archivio sud Laboratorio, Biblioteca sud Atrio
+Personaggi: Mago Merlino Sono_un_mago_generoso pergamena 1 Atrio

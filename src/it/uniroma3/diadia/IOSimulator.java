@@ -1,44 +1,51 @@
 package it.uniroma3.diadia;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class IOSimulator implements IO {
 	
-	private String[] comandi;
-	private int counterComandi = 0;
-	private int counterOutput = 0;
-	private String[] output;
+	private List<String> comandi;
+	private Map<String, List<String>> output;
+	private String ultimoComando;
 	
-	public IOSimulator(int numeroOutput) {
-		output = new String[numeroOutput];
+	public IOSimulator() {
+		output = new HashMap<String, List<String>>();
+		comandi = new ArrayList<String>();
+		ultimoComando = "inizio";
 	}
 	
-	public String[] getComando() {
+	public List<String> getComandi() {
 		return comandi;
 	}
 
-	public void setComando(String[] comandi) {
+	public void setComandi(List<String> comandi) {
 		this.comandi = comandi;
 	}
 
-	public String[] getOutput() {
+	public Map<String, List<String>> getOutput() {
 		return output;
 	}
 
-	public void setOutput(String[] output) {
+	public void setOutput(Map<String, List<String>> output) {
 		this.output = output;
 	}
 
 	@Override
 	public void mostraMessaggio(String msg) {
-		output[counterOutput] = msg;
+		if (!output.containsKey(ultimoComando))
+			output.put(ultimoComando, new ArrayList<String>());
+		output.get(ultimoComando).add(msg);
 		System.out.println(msg);
-		counterOutput++;
 	}
 	
 	@Override
 	public String leggiRiga() {
-		String riga = comandi[counterComandi];
-		System.out.println(comandi[counterComandi]);
-		counterComandi++;
+		String riga = comandi.removeFirst();
+		System.out.println(riga);
+		ultimoComando = riga;
 		return riga;
 	}
 
