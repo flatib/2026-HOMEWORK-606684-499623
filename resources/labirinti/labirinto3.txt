@@ -1,0 +1,9 @@
+Stanze: Atrio, Galleria, Officina, Biblioteca, Cripta, Torre, AulaMagica
+StanzeBloccate: Biblioteca nord chiave
+StanzeBuie: Cripta lanterna
+StanzeMagiche: AulaMagica 2
+Inizio: Atrio
+Vincente: Biblioteca
+Attrezzi: lanterna 1 Officina, chiave 1 Torre, osso 1 Atrio, martello 3 Galleria, pergamena 1 AulaMagica, gemma 2 Cripta
+Uscite: Atrio nord Galleria, Atrio est Officina, Atrio ovest AulaMagica, Galleria sud Atrio, Galleria est Torre, Galleria nord Biblioteca, Officina ovest Atrio, Officina nord Cripta, Cripta sud Officina, AulaMagica est Atrio, Torre ovest Galleria, Torre sud Biblioteca, Biblioteca nord Torre
+Personaggi: Mago Merlino Io_posso_aiutarti_se_mi_ascolti anello 1 AulaMagica, Cane Cerbero Nessuno_passa_senza_un_dono osso scudo 2 Cripta, Strega Morgana Salutami_prima_di_chiedere Torre

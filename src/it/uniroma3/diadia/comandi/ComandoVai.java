@@ -1,19 +1,20 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 
-public class ComandoVai implements Comando{
-	private String direzione;
-	private IO io;
+public class ComandoVai extends AbstractComando{
+	
+	private Direzione direzione;
 
-	public ComandoVai(IO io) {
-		this.io = io;
+	public ComandoVai() {
+		super();
 	}
 
 	@Override
-	public void esegui(Partita partita) {
+	public void esegui(Partita partita, IO io) {
 		Stanza stanzaCorrente = partita.getLabirinto().getStanzaCorrente();
 		Stanza prossimaStanza = null;
 		if(direzione == null) {
@@ -25,13 +26,17 @@ public class ComandoVai implements Comando{
 			io.mostraMessaggio("Direzione inesistente");
 			return;
 		}
-		partita.setStanzaCorrente(prossimaStanza);
+		partita.getLabirinto().setStanzaCorrente(prossimaStanza);
 		io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getNome());
 		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
 	}
 	
 	@Override
 	public void setParametro(String parametro) {
-		this.direzione = parametro;
+		if (parametro == null)
+            this.direzione = null;
+        else
+            this.direzione = Direzione.getDirezione(parametro.toLowerCase());
 	}
+	
 }

@@ -1,0 +1,8 @@
+Stanze: Atrio, Corridoio, Biblioteca, Cucina, Cortile
+StanzeBloccate: Biblioteca nord chiave
+StanzeBuie: Cortile torcia
+Inizio: Atrio
+Vincente: Biblioteca
+Attrezzi: chiave 1 Cucina, torcia 2 Corridoio, bistecca 1 Atrio
+Uscite: Atrio est Corridoio, Atrio sud Cucina, Corridoio ovest Atrio, Corridoio nord Biblioteca, Corridoio est Cortile, Cucina nord Atrio, Cortile ovest Corridoio, Biblioteca sud Corridoio
+Personaggi: Cane Fido Sono_un_cane_molto_fedele bistecca medaglia 1 Corridoio, Strega Morgana Non_dimenticare_di_salutare Cortile
